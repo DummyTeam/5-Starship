@@ -1,9 +1,11 @@
 #include "Starship.h"
 
-Starship::Starship()
-{
+Starship::Starship() {
+	Starship("ship1.png");
 }
 
-Starship::~Starship()
-{
+Starship::Starship(std::string txtrPath) :GameObject(txtrPath) {
+	health = 100;
+	setScale(0.5f, 0.5f);
+	gun.bullets.resize(15);
 }

@@ -1,9 +1,6 @@
 #include "Player.h"
 
-Player::Player()
-{
-}
-
-Player::~Player()
-{
+Player::Player() : Starship("ship1.png"){
+	health = 500;
+	
 }

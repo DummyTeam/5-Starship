@@ -6,7 +6,6 @@ class Player : public Starship
 {
 public:
 	Player();
-	~Player();
 
 private:
 

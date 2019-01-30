@@ -94,5 +94,14 @@
     <Image Include="bck.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="shot1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="shot2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="shot3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

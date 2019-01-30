@@ -1,10 +1,11 @@
 #pragma once
 
-class HealthBar
+#include "GameObject.h"
+
+class HealthBar : public GameObject
 {
 public:
-	HealthBar();
-	~HealthBar();
+	
 
 private:
 

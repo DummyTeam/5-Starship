@@ -6,8 +6,6 @@ class Background : public GameObject
 {
 public:
 	Background();
-	~Background();
-
 private:
 
 };

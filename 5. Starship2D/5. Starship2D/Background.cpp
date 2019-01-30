@@ -1,10 +1,3 @@
 #include "Background.h"
 
-
-Background::Background()
-{
-}
-
-Background::~Background()
-{
-}
+Background::Background() : GameObject("bck.png"){}

@@ -6,8 +6,7 @@ class Bullet : public GameObject
 {
 public:
 	Bullet();
-	~Bullet();
-
+	bool isMoving;
 private:
 
 };

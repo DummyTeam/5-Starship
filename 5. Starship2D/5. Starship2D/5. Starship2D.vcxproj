@@ -152,6 +152,9 @@
     <Image Include="ship3.png" />
     <Image Include="ship4.png" />
     <Image Include="ship5.png" />
+    <Image Include="shot1.png" />
+    <Image Include="shot2.png" />
+    <Image Include="shot3.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

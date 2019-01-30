@@ -1,13 +1,12 @@
 #pragma once
 
 #include "Bullet.h"
+#include <vector>
 
-class Gun
+class Gun : public GameObject
 {
 public:
-	Gun();
-	~Gun();
+	std::vector<Bullet> bullets;
 
 private:
-	Bullet bullets[];
 };

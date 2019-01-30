@@ -1,9 +1,33 @@
 #include "GameObject.h"
 
-GameObject::GameObject()
-{
+GameObject::GameObject() {
+	isVisible = true;
+
+	if (!texture.loadFromFile(txtrPath))
+	{
+		std::cout << "Texture Not Found!" << std::endl;
+	}
+
+	this->setTexture(texture);
 }
 
-GameObject::~GameObject()
+GameObject::GameObject(std::string txtrPath)
 {
+	isVisible = true;
+
+	if (!texture.loadFromFile(txtrPath))
+	{
+		std::cout << "Texture Not Found!" << std::endl;
+	}
+
+	this->setTexture(texture);
+}
+
+void GameObject::setVisible(bool isVisible) {
+	this->isVisible = isVisible;
+	isVisible ? this->setScale(1.f, 1.f) : this->setScale(0.f, 0.f);
+}
+
+bool GameObject::getVisible() {
+	return this->isVisible;
 }

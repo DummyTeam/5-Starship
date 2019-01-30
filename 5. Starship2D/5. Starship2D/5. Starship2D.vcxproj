@@ -123,7 +123,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Starship.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Gun.h" />
+    <ClInclude Include="HealthBar.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Starship.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bck.png" />
+    <Image Include="ship1.png" />
+    <Image Include="ship2.png" />
+    <Image Include="ship3.png" />
+    <Image Include="ship4.png" />
+    <Image Include="ship5.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

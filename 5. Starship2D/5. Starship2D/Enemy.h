@@ -6,7 +6,7 @@ class Enemy : public Starship
 {
 public:
 	Enemy();
-
+	short dir;
 private:
 
 };

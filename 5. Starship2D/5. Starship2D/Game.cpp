@@ -1,7 +1,7 @@
 #include "Game.h"
 
 Game::Game() {
-	enemies.resize(4);
+	enemies.resize(2);
 }
 
 void Game::start() {
@@ -12,6 +12,13 @@ void Game::start() {
 	int timeCounter = 0;
 	int bulletCounter = 0;
 
+	for (size_t i = 0; i < 2; i++)
+	{
+		enemies[i].setPosition(720.f, (i * 300) + 120);
+	}
+	enemies[0].dir = 1.0;
+	enemies[1].dir = -2.0;
+
 	while (window.isOpen())
 	{
 		timeCounter++;
@@ -21,7 +28,6 @@ void Game::start() {
 		while (window.pollEvent(event))
 		{
 			if (
-
 				(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
 					sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 				&& (player.getPosition().y > 0)
@@ -31,7 +37,7 @@ void Game::start() {
 			if (
 				(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) ||
 					sf::Keyboard::isKeyPressed(sf::Keyboard::S)) &&
-					(player.getPosition().y < 580)
+					(player.getPosition().y < 550)
 				) {
 				player.move(0.f, 10.f);
 			}
@@ -42,11 +48,16 @@ void Game::start() {
 
 		bulletCounter = (timeCounter % 600) / 40;
 		player.gun.bullets[bulletCounter].isMoving = true;
-		std::cout << timeCounter << std::endl;
+
+		enemies[0].gun.bullets[bulletCounter].isMoving = true;
+		enemies[1].gun.bullets[bulletCounter].isMoving = true;
 
 		if ((timeCounter % 600) % 40 <= 1)
 		{
 			player.gun.bullets[bulletCounter].setPosition(player.getPosition().x + 30, player.getPosition().y + 30);
+			
+			enemies[0].gun.bullets[bulletCounter].setPosition(enemies[0].getPosition().x - 30, enemies[0].getPosition().y + 30);
+			enemies[1].gun.bullets[bulletCounter].setPosition(enemies[1].getPosition().x - 30, enemies[1].getPosition().y + 30);
 		}
 
 		for (int j = 0; j < 15; j++) {
@@ -56,11 +67,39 @@ void Game::start() {
 			}
 		}
 
+		for (size_t i = 0; i < 2; i++)
+		{
+			for (int j = 0; j < 15; j++) {
+				if (enemies[i].gun.bullets[j].isMoving)
+				{
+					enemies[i].gun.bullets[j].move(-5.f, 0.f);
+				}
+			}
+		}
+
+		for (size_t i = 0; i < 2; i++)
+		{
+			if (
+				(enemies[i].getPosition().y > 0 &&
+					enemies[i].getPosition().y < 290)
+				||
+				(enemies[i].getPosition().y > 310 &&
+					enemies[i].getPosition().y < 550)
+				) {
+				enemies[i].move(0.f, enemies[i].dir * 2.f);
+			}
+			else
+			{
+				enemies[i].dir *= -1;
+				enemies[i].move(0.f, enemies[i].dir *  2.f);
+			}
+		}
+
 		window.clear();
 
 		window.draw(background);
 
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 2; i++)
 		{
 			window.draw(enemies[i]);
 		}
@@ -71,6 +110,17 @@ void Game::start() {
 				window.draw(player.gun.bullets[j]);
 			}
 		}
+
+		for (size_t i = 0; i < 2; i++)
+		{
+			for (int j = 0; j < 15; j++) {
+				if (enemies[i].gun.bullets[j].isMoving)
+				{
+					window.draw(enemies[i].gun.bullets[j]);
+				}
+			}
+		}
+
 
 		window.draw(player);
 

@@ -16,6 +16,7 @@ void Game::start() {
 	{
 		enemies[i].setPosition(720.f, (i * 300) + 120);
 	}
+
 	enemies[0].dir = 1.0;
 	enemies[1].dir = -2.0;
 
@@ -48,22 +49,35 @@ void Game::start() {
 
 		bulletCounter = (timeCounter % 600) / 40;
 		player.gun.bullets[bulletCounter].isMoving = true;
-
 		enemies[0].gun.bullets[bulletCounter].isMoving = true;
 		enemies[1].gun.bullets[bulletCounter].isMoving = true;
 
 		if ((timeCounter % 600) % 40 <= 1)
 		{
 			player.gun.bullets[bulletCounter].setPosition(player.getPosition().x + 30, player.getPosition().y + 30);
-			
+
 			enemies[0].gun.bullets[bulletCounter].setPosition(enemies[0].getPosition().x - 30, enemies[0].getPosition().y + 30);
 			enemies[1].gun.bullets[bulletCounter].setPosition(enemies[1].getPosition().x - 30, enemies[1].getPosition().y + 30);
+
+			player.gun.bullets[bulletCounter].setScale(0.3f, 0.3f);
+			enemies[0].gun.bullets[bulletCounter].setScale(0.3f, 0.3f);
+			enemies[1].gun.bullets[bulletCounter].setScale(0.3f, 0.3f);
+
+
 		}
 
 		for (int j = 0; j < 15; j++) {
 			if (player.gun.bullets[j].isMoving)
 			{
 				player.gun.bullets[j].move(5.f, 0.f);
+
+				if (player.gun.bullets[j].getGlobalBounds().intersects(enemies[0].getGlobalBounds()) ||
+					player.gun.bullets[j].getGlobalBounds().intersects(enemies[1].getGlobalBounds())
+					)
+				{
+					player.gun.bullets[j].isMoving = false;
+					player.gun.bullets[j].setScale(0.f, 0.f);
+				}
 			}
 		}
 
@@ -73,6 +87,13 @@ void Game::start() {
 				if (enemies[i].gun.bullets[j].isMoving)
 				{
 					enemies[i].gun.bullets[j].move(-5.f, 0.f);
+
+					if (player.getGlobalBounds().intersects(enemies[i].gun.bullets[j].getGlobalBounds()))
+					{
+						enemies[i].gun.bullets[j].isMoving = false;
+						enemies[i].gun.bullets[j].setScale(0.f, 0.f);
+					}
+
 				}
 			}
 		}
@@ -120,7 +141,6 @@ void Game::start() {
 				}
 			}
 		}
-
 
 		window.draw(player);
 

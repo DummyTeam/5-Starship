@@ -1,32 +1,30 @@
 #include "Game.h"
+#include "DataProvider.h"
 
 Game::Game() {
-	enemies.resize(2);
+	enemies.resize(DP::numberOfEnemies);
+	enemies[0].velocity *= -1;
+
+	for (size_t i = 0; i < 2; i++)
+	{
+		enemies[i].setPosition(DP::screenWidth - 80.f, ((i *  DP::screenHeight) / 2) + (DP::screenHeight / 4) - 30);
+		enemies[i].healthBar.setPosition(DP::screenWidth - 80.f, ((i *  DP::screenHeight) / 2) + (DP::screenHeight / 4) - 30);
+	}
 }
 
 void Game::start() {
-	RenderWindow window(VideoMode(800, 600), "Starship 2D");
+	RenderWindow window(VideoMode(DP::screenWidth, DP::screenHeight), "Starship 2D");
 	window.setVerticalSyncEnabled(true);
 	window.setActive(true);
 
 	int timeCounter = 0;
 	int bulletCounter = 0;
 
-	for (size_t i = 0; i < 2; i++)
-	{
-		enemies[i].setPosition(720.f, (i * 300) + 120);
-		enemies[i].healthBar.setPosition(720.f, (i * 300) + 120);
-	}
-
-	enemies[0].dir = 1.0;
-	enemies[1].dir = -2.0;
-
 	while (window.isOpen())
 	{
 		timeCounter++;
 
 		sf::Event event;
-
 		while (window.pollEvent(event))
 		{
 			if (
@@ -65,8 +63,6 @@ void Game::start() {
 			player.bullets[bulletCounter].setScale(0.3f, 0.3f);
 			enemies[0].bullets[bulletCounter].setScale(0.3f, 0.3f);
 			enemies[1].bullets[bulletCounter].setScale(0.3f, 0.3f);
-
-
 		}
 
 		for (int j = 0; j < 15; j++) {
@@ -74,12 +70,18 @@ void Game::start() {
 			{
 				player.bullets[j].move(5.f, 0.f);
 
-				if (player.bullets[j].getGlobalBounds().intersects(enemies[0].getGlobalBounds()) ||
-					player.bullets[j].getGlobalBounds().intersects(enemies[1].getGlobalBounds())
-					)
+				if (player.bullets[j].getGlobalBounds().intersects(enemies[0].getGlobalBounds()))
 				{
 					player.bullets[j].isMoving = false;
 					player.bullets[j].setScale(0.f, 0.f);
+					enemies[0].healthBar.injured(10);
+
+				}
+				if (player.bullets[j].getGlobalBounds().intersects(enemies[1].getGlobalBounds()))
+				{
+					player.bullets[j].isMoving = false;
+					player.bullets[j].setScale(0.f, 0.f);
+					enemies[1].healthBar.injured(10);
 				}
 			}
 		}
@@ -95,8 +97,8 @@ void Game::start() {
 					{
 						enemies[i].bullets[j].isMoving = false;
 						enemies[i].bullets[j].setScale(0.f, 0.f);
+						player.healthBar.injured(10);
 					}
-
 				}
 			}
 		}
@@ -110,14 +112,14 @@ void Game::start() {
 				(enemies[i].getPosition().y > 310 &&
 					enemies[i].getPosition().y < 550)
 				) {
-				enemies[i].move(0.f, enemies[i].dir * 2.f);
-				enemies[i].healthBar.move(0.f, enemies[i].dir * 2.f);
+				enemies[i].move(0.f, enemies[i].velocity * 2.f);
+				enemies[i].healthBar.move(0.f, enemies[i].velocity * 2.f);
 			}
 			else
 			{
-				enemies[i].dir *= -1;
-				enemies[i].move(0.f, enemies[i].dir *  2.f);
-				enemies[i].healthBar.move(0.f, enemies[i].dir *  2.f);
+				enemies[i].velocity *= -1;
+				enemies[i].move(0.f, enemies[i].velocity *  2.f);
+				enemies[i].healthBar.move(0.f, enemies[i].velocity *  2.f);
 			}
 		}
 

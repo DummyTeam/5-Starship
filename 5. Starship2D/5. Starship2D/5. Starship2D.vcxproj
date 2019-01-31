@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="DataProvider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />

@@ -10,10 +10,8 @@ class Starship : public GameObject
 public:
 	Starship();
 	Starship(std::string);
-	int health;
 	HealthBar healthBar;
 	std::vector<Bullet> bullets;
-
 private:
 
 };

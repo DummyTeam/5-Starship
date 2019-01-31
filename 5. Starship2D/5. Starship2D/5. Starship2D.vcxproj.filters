@@ -68,6 +68,9 @@
     <ClInclude Include="Background.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DataProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="ship1.png">

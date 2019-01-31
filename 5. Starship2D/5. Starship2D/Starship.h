@@ -2,7 +2,7 @@
 
 #include "GameObject.h"
 #include "HealthBar.h"
-#include "Gun.h"
+#include "Bullet.h"
 #include <string>
 
 class Starship : public GameObject
@@ -12,7 +12,7 @@ public:
 	Starship(std::string);
 	int health;
 	HealthBar healthBar;
-	Gun gun;
+	std::vector<Bullet> bullets;
 
 private:
 

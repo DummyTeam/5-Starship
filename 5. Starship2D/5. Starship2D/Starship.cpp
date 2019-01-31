@@ -7,5 +7,5 @@ Starship::Starship() {
 Starship::Starship(std::string txtrPath) :GameObject(txtrPath) {
 	health = 100;
 	setScale(0.5f, 0.5f);
-	gun.bullets.resize(15);
+	bullets.resize(15);
 }

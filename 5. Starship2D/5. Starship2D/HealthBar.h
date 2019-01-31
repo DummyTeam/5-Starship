@@ -5,8 +5,7 @@
 class HealthBar : public GameObject
 {
 public:
-	
-
+	HealthBar();
 private:
 
 };

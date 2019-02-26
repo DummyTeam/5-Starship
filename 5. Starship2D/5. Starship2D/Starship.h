@@ -12,6 +12,9 @@ public:
 	Starship(std::string);
 	HealthBar healthBar;
 	std::vector<Bullet> bullets;
-private:
-
+	int currentBullet;
+	void shoot(int);
+	void animateBullets(Starship&);
+	void animateBullets(std::vector<Starship>&);
+	double velocity;
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Enemy.h"
+#include "EnemyManager.h"
 #include "Player.h"
 #include "Background.h"
 #include <SFML\Graphics.hpp>
@@ -14,11 +14,10 @@ class Game
 public:
 	Game();
 	void start();
+	void handleEvents(RenderWindow&);
 
 	Player player;
-	std::vector<Enemy> enemies;
+	EnemyManager enemyManager;
 	Background background;
-
-private:
 
 };

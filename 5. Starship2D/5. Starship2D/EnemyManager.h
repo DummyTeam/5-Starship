@@ -8,7 +8,7 @@ using namespace sf;
 class EnemyManager
 {
 public:
-	class EnemyManager();
+	EnemyManager();
 	std::vector<Starship> enemies;
 	void animateEnemies(Player&);
 	void positionEnemiesInit();

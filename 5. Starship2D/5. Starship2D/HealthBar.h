@@ -10,8 +10,5 @@ public:
 	void injured(int);
 
 	void setHealth(int);
-
-private:
 	int health;
-
 };

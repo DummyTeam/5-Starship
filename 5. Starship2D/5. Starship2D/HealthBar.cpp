@@ -2,6 +2,7 @@
 
 
 HealthBar::HealthBar() : GameObject("rect.png") {
+	std::cout << "Healthbar created" << std::endl;
 	this->setScale(0.3f, 0.1f);
 	this->health = 100;
 	this->setColor(sf::Color(0, 250, 0));

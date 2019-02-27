@@ -14,6 +14,8 @@ class Game
 public:
 	Game();
 	void start();
+	void win(RenderWindow&);
+	void gameOver(RenderWindow&);
 	void handleEvents(RenderWindow&);
 
 	Player player;

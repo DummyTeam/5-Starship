@@ -6,5 +6,4 @@ class Enemy : public Starship
 {
 public:
 	Enemy();
-
 };

@@ -8,12 +8,13 @@
 class GameObject : public sf::Sprite
 {
 public:
-	
+
 	GameObject();
 	GameObject(std::string);
 
 	void setVisible(bool);
 	bool getVisible();
+	void  setObjectTexture(std::string);
 
 	std::string txtrPath = "ship1.png";
 

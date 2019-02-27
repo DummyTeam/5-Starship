@@ -1,5 +1,5 @@
 #include "Enemy.h"
 
-Enemy::Enemy() : Starship("ship3.png") {
-
+Enemy::Enemy() : Starship() {
+	std::cout << "Enemy created Main" << std::endl;
 }

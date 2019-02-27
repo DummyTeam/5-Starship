@@ -9,11 +9,15 @@ class Starship : public GameObject
 {
 public:
 	Starship();
-	Starship(std::string);
 	HealthBar healthBar;
 	std::vector<Bullet> bullets;
 	int currentBullet;
+	float bulletSpeed;
 	void shoot(int);
+	void setBulletSpeed(float);
+	void damaged(float);
+	void destroyed();
+
 	void animateBullets(Starship&);
 	void animateBullets(std::vector<Starship>&);
 	double velocity;

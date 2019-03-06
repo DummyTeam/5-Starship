@@ -21,5 +21,4 @@ public:
 	Player player;
 	EnemyManager enemyManager;
 	Background background;
-
 };

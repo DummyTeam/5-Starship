@@ -6,4 +6,6 @@ class Player : public Starship
 {
 public:
 	Player();
+
+	bool isDead();
 };

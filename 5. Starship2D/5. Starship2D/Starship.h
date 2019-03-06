@@ -19,6 +19,7 @@ public:
 	void destroyed();
 
 	void animateBullets(Starship&);
+	void checkCollisionWithBullet(Starship&, Bullet&);
 	void animateBullets(std::vector<Starship>&);
 	double velocity;
 };

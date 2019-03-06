@@ -14,11 +14,13 @@ EnemyManager::EnemyManager() {
 }
 
 void EnemyManager::animateEnemies(Player& player) {
+
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
 		if (enemies[i].getVisible())
+		{
 			enemies[i].animateBullets(player);
-		
+		}
 	}
 
 	for (size_t i = 0; i < enemies.size(); i++)
@@ -57,4 +59,13 @@ void EnemyManager::shoot(int timeCounter) {
 		if (enemies[i].getVisible())
 			enemies[i].shoot(timeCounter);
 	}
+}
+
+bool EnemyManager::areTheyAllDead() {
+	for (size_t i = 0; i < enemies.size(); i++)
+	{
+		if (enemies[i].getVisible())
+			return false;
+	}
+	return true;
 }

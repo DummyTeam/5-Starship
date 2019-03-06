@@ -8,7 +8,6 @@ Starship::Starship() : GameObject("ship1.png") {
 	setScale(0.5f, 0.5f);
 	currentBullet = 0;
 	bullets.resize(DP::numberOfBullets);
-
 }
 
 void Starship::setBulletSpeed(float bulletSpeed) {
@@ -27,12 +26,8 @@ void Starship::animateBullets(Starship& obstacle) {
 		if (this->bullets[j].isMoving)
 		{
 			this->bullets[j].move(bulletSpeed, 0.f);
-			if (obstacle.getGlobalBounds().intersects(bullets[j].getGlobalBounds()))
-			{
-				bullets[j].isMoving = false;
-				bullets[j].setScale(0.f, 0.f);
-				obstacle.damaged(10);
-			}
+			
+			checkCollisionWithBullet(obstacle, bullets[j]);
 		}
 	}
 }
@@ -45,14 +40,18 @@ void Starship::animateBullets(std::vector<Starship>& obstacles) {
 
 			for (size_t i = 0; i < obstacles.size(); i++)
 			{
-				if (obstacles[i].getGlobalBounds().intersects(bullets[j].getGlobalBounds()))
-				{
-					bullets[j].isMoving = false;
-					bullets[j].setScale(0.f, 0.f);
-					obstacles[i].damaged(10);
-				}
+				checkCollisionWithBullet(obstacles[i], bullets[j]);
 			}
 		}
+	}
+}
+
+void Starship::checkCollisionWithBullet(Starship& obstacle, Bullet& bullet) {
+	if (obstacle.getGlobalBounds().intersects(bullet.getGlobalBounds()))
+	{
+		bullet.isMoving = false;
+		bullet.setScale(0.f, 0.f);
+		obstacle.damaged(10);
 	}
 }
 
@@ -68,4 +67,3 @@ void Starship::destroyed() {
 	this->bullets.clear();
 	this->setVisible(false);
 }
-

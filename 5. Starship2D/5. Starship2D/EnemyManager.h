@@ -11,6 +11,7 @@ public:
 	EnemyManager();
 	std::vector<Starship> enemies;
 	void animateEnemies(Player&);
+	bool areTheyAllDead();
 	void positionEnemiesInit();
 	void shoot(int);
 };

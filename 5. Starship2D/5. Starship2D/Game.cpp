@@ -19,15 +19,13 @@ void Game::start() {
 	while (window.isOpen())
 	{
 		// Check for win
-		if (enemyManager.enemies.size() <= 0) {
+		if (enemyManager.areTheyAllDead()) {
 			win(window);
-			return;
 		}
 
 		// Check for game-over
-		if (player.healthBar.health <= 0) {
+		if (player.isDead()) {
 			gameOver(window);
-			return;
 		}
 
 		// Handle keyboard events
@@ -86,13 +84,52 @@ void Game::start() {
 		// Limit the timeCounter
 		timeCounter %= 600;
 	}
+
 }
 
 void Game::win(RenderWindow& window) {
+	window.clear();
+
+	sf::Texture texture;
+
+	if (!texture.loadFromFile("Won.png"))
+	{
+		// error...
+	}
+
+	sf::Sprite sprite;
+
+	sprite.setTexture(texture);
+	
+	window.draw(sprite);
+
+	window.display();
+
+	while (true) {}
 
 }
 
+
+
 void Game::gameOver(RenderWindow& window) {
+	window.clear();
+
+	sf::Texture texture;
+
+	if (!texture.loadFromFile("GameOver.png"))
+	{
+		// error...
+	}
+
+	sf::Sprite sprite;
+
+	sprite.setTexture(texture);
+
+	window.draw(sprite);
+
+	window.display();
+
+	while (true) {}
 
 }
 
